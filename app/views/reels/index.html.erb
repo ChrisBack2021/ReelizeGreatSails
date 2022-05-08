@@ -1,0 +1,6 @@
+<h1>Catalogue</h1>
+<%# Add in hyperlink for brands later %>
+
+<% @reels.each do |reel| %>
+  <p><%= link_to reel.item_name, reel %></p>
+<% end %>
