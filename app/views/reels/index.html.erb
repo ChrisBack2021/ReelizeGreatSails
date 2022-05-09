@@ -1,6 +1,10 @@
 <h1>Catalogue</h1>
-<%# Add in hyperlink for brands later %>
+
+<h2><%= link_to 'New', new_reel_path, class: 'btn btn-primary' %></h2>
 
 <% @reels.each do |reel| %>
-  <p><%= link_to reel.item_name, reel %></p>
+  <p>
+    <%= link_to reel.brand.brand, reel %>
+    <%= link_to reel.item_name, reel %>
+  </p>
 <% end %>

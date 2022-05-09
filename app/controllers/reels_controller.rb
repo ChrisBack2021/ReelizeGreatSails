@@ -1,5 +1,16 @@
 class ReelsController < ApplicationController
-  before_action :set_reel, only: [:show, :edit, :update]
+  before_action :set_reel, only: [:show, :edit, :update, :destroy]
+  before_action :set_brand_reel_type, only: [:new, :edit]
+
+  def new
+    @reel = Reel.new
+    set_brand_reel_type
+  end
+
+  def create
+    @reel = Reel.create(reel_params)
+    redirect_to @reel
+  end
 
   def index
     @reels = Reel.all
@@ -10,8 +21,7 @@ class ReelsController < ApplicationController
   end
 
   def edit
-    @brands = Brand.order(:brand)
-    @reel_types = ReelType.order(:reel_type)
+    set_brand_reel_type
   end
 
   def update
@@ -19,10 +29,20 @@ class ReelsController < ApplicationController
     redirect_to @reel
   end
 
+  def destroy
+    @reel.destroy
+    redirect_to reels_path
+  end
+
 
 private
   def set_reel
     @reel = Reel.find(params[:id])
+  end
+
+  def set_brand_reel_type
+    @brands = Brand.order(:brand)
+    @reel_types = ReelType.order(:reel_type)
   end
 
   def reel_params

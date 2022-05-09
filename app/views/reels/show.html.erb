@@ -1,13 +1,19 @@
-<h1><%= @reel.item_name %></h1>
-
-
-<%= @reel.brand_id == 1 ? "Shimano" : "Daiwa" %>
+<h1>
+  <%= @reel.brand.brand %>
+  <%= @reel.item_name %>
+</h1>
 
 <h2> 
-  <ul>Description: <%= @reel.description %></ul>
+  <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
   <ul>Size: <%= @reel.size %></ul>
   <ul>Price: $<%= @reel.price %></ul>
+  <ul>Description: <%= @reel.description %></ul>
   <ul>Item condition: <%= @reel.item_condition %></ul>
+  <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
 </h2>
 
-<%= link_to 'Edit', edit_reel_path(@reel) %>
+<div class="btn-toolbar ">
+<%= link_to 'Edit', edit_reel_path(@reel), class: 'btn btn-warning me-2' %>
+<%= button_to 'Delete', @book, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete ' #{@reel.brand.brand} #{@reel.item_name}' ?" } }, class: 'btn btn-danger me-2' %>
+<%= link_to 'Back to catalogue', reels_path, class: 'btn btn-primary' %>
+</div>
