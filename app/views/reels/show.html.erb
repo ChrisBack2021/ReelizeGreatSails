@@ -3,10 +3,11 @@
 
 <%= @reel.brand_id == 1 ? "Shimano" : "Daiwa" %>
 
-
 <h2> 
   <ul>Description: <%= @reel.description %></ul>
   <ul>Size: <%= @reel.size %></ul>
   <ul>Price: $<%= @reel.price %></ul>
   <ul>Item condition: <%= @reel.item_condition %></ul>
 </h2>
+
+<%= link_to 'Edit', edit_reel_path(@reel) %>
