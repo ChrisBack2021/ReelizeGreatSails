@@ -13,7 +13,9 @@
 </h2>
 
 <div class="btn-toolbar ">
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_reel_path(@reel), class: 'btn btn-warning me-2' %>
 <%= button_to 'Delete', @book, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete ' #{@reel.brand.brand} #{@reel.item_name}' ?" } }, class: 'btn btn-danger me-2' %>
+<% end %>
 <%= link_to 'Back to catalogue', reels_path, class: 'btn btn-primary' %>
 </div>

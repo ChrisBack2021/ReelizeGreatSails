@@ -1,6 +1,6 @@
 <h1>Catalogue</h1>
 
-<h2><%= link_to 'New', new_reel_path, class: 'btn btn-primary' %></h2>
+<h2><%= user_signed_in? ? (link_to 'New', new_reel_path, class: 'btn btn-primary') : '' %></h2>
 
 <% @reels.each do |reel| %>
   <p>

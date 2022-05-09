@@ -1,4 +1,5 @@
 class ReelsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_reel, only: [:show, :edit, :update, :destroy]
   before_action :set_brand_reel_type, only: [:new, :edit]
 
