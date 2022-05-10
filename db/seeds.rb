@@ -6,7 +6,13 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.destroy_all
+Reel.destroy_all
+Brand.destroy_all
+ReelType.destroy_all
 
+
+user = User.create(email: 'admin@test.com', password: '123321')
 
 Brand.create(brand: "Shimano")
 Brand.create(brand: "Daiwa")

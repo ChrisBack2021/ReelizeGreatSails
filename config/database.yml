@@ -16,6 +16,8 @@ default: &default
 development:
   <<: *default
   database: ReelizeGreatSails_development
+  username: postgres
+  password: postgres
 
 
 # Warning: The database defined as "test" will be erased and
@@ -27,4 +29,6 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql\
+  adapter: postgresql
+  username: postgres
+  password: postgres
