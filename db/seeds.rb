@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
+
 Brand.create(brand: "Shimano")
 Brand.create(brand: "Daiwa")
 

@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_09_115836) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_10_053037) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "brands", force: :cascade do |t|
     t.string "brand"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,8 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_115836) do
     t.string "item_condition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "reel_type_id", null: false
-    t.integer "brand_id", null: false
+    t.bigint "reel_type_id", null: false
+    t.bigint "brand_id", null: false
     t.index ["brand_id"], name: "index_reels_on_brand_id"
     t.index ["reel_type_id"], name: "index_reels_on_reel_type_id"
   end
