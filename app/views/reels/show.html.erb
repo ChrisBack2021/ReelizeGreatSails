@@ -3,6 +3,8 @@
   <%= @reel.item_name %>
 </h1>
 
+<%= cl_image_tag @reel.reel_pic.key, crop: :scale, width: 150, cloud_name: 'dm2ebszpf' %>
+
 <h2> 
   <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
   <ul>Size: <%= @reel.size %></ul>
@@ -11,6 +13,8 @@
   <ul>Item condition: <%= @reel.item_condition %></ul>
   <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
 </h2>
+
+
 
 <div class="btn-toolbar ">
 <% if user_signed_in? %>

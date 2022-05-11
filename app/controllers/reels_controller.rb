@@ -31,6 +31,7 @@ class ReelsController < ApplicationController
   end
 
   def destroy
+    @reel.reel_pic.purge
     @reel.destroy
     redirect_to reels_path
   end
@@ -47,7 +48,7 @@ private
   end
 
   def reel_params
-    params.require(:reel).permit(:item_name, :size, :description, :price, :item_condition, :brand_id, :reel_type_id)
+    params.require(:reel).permit(:item_name, :size, :description, :price, :item_condition, :brand_id, :reel_type_id, :reel_pic)
   end
 
 end

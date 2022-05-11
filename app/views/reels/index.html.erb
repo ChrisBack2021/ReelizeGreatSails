@@ -4,7 +4,9 @@
 
 <% @reels.each do |reel| %>
   <p>
+    <%= cl_image_tag reel.reel_pic.key, transformation: ["media_lib_thumb"], cloud_name: 'dm2ebszpf' %>
     <%= link_to reel.brand.brand, reel %>
     <%= link_to reel.item_name, reel %>
   </p>
 <% end %>
+
