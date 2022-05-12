@@ -12,7 +12,8 @@ Brand.destroy_all
 ReelType.destroy_all
 
 
-user = User.create(email: 'admin@test.com', password: '123321')
+User.create!(email: 'admin@test.com', password: '123321')
+Profile.create(first_name: 'Admin', last_name: 'Admin', age: 51, user_id: 1)
 
 Brand.create(brand: "Shimano")
 Brand.create(brand: "Daiwa")
