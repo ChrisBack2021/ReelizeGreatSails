@@ -8,9 +8,13 @@ Rails.application.routes.draw do
 
   resources :reels
 
+  # resources :profiles
+  # If index becomes shopping cart
   get '/profiles', to: 'profiles#index'
   get '/profiles/:id/edit', to: 'profiles#edit', as: 'edit_profile'
   patch '/profiles/:id', to: 'profiles#update'
+  post '/profiles/:id/edit', to: 'profiles#update'
+  get '/profiles/:id/edit', to: 'profiles#show'
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
