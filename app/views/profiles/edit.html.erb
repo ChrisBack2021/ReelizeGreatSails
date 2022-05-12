@@ -1,0 +1,17 @@
+<%= form_with(model: @profile, data: {turbo: false}) do |f| %>
+  <fieldset>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :age %>
+    <%= f.text_field :age %>
+  </fieldset>
+  <fieldset>
+    <%= f.submit %>
+  </fieldset>
+<% end %>
