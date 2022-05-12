@@ -1,7 +1,7 @@
 class ReelsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_reel, only: [:show, :edit, :update, :destroy]
-  before_action :set_brand_reel_type, only: [:new, :edit]
+  before_action :set_brand_reel_type, only: [:new, :edit, :create, :update]
 
   def new
     @reel = Reel.new
@@ -10,7 +10,12 @@ class ReelsController < ApplicationController
 
   def create
     @reel = Reel.create(reel_params)
-    redirect_to @reel
+    if @reel.valid?
+      redirect_to @reel
+    else
+      flash.now[:alert] = @reel.errors.full_messages.join('<br>')
+      render 'new'
+    end
   end
 
   def index
@@ -22,12 +27,16 @@ class ReelsController < ApplicationController
   end
 
   def edit
-    set_brand_reel_type
   end
 
   def update
-    @reel.update(reel_params)
-    redirect_to @reel
+    begin
+      @reel.update!(reel_params)
+      redirect_to @reel
+    rescue
+      flash.now[:alert] = @reel.errors.full_messages.join('<br>')
+    render 'edit'
+    end
   end
 
   def destroy
