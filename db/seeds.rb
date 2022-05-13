@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Profile.destroy_all
 User.destroy_all
 Reel.destroy_all
 Brand.destroy_all
@@ -13,20 +14,13 @@ ReelType.destroy_all
 
 
 User.create!(email: 'admin@test.com', password: '123321')
-Profile.create(first_name: 'Admin', last_name: 'Admin', age: 51, user_id: 1)
+Profile.create(first_name: 'Admin', last_name: 'Admin', age: 51, user_id: 2)
 
 Brand.create(brand: "Shimano")
 Brand.create(brand: "Daiwa")
 
 ReelType.create(reel_type: "Spinning")
 ReelType.create(reel_type: "Overhead")
-
-# Author has many books
-# Book belongs to author
-# Create author
-# chain book method to author variable
-
-# reel belongs to brand and reel type
 
 Reel.create(item_name: "Certate", size: "5000", description: "Great", price: "700", item_condition: "good", brand_id: 2, reel_type_id: 1)
 Reel.create(item_name: "Exist", size: "2500", description: "Great", price: "800", item_condition: "good", brand_id: 2, reel_type_id: 1)
