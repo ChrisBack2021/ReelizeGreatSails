@@ -1,12 +1,27 @@
 <h1>Catalogue</h1>
-
-<h2><%= user_signed_in? ? (link_to 'New', new_reel_path, class: 'btn btn-primary') : '' %></h2>
-
+<details>
+  <summary>Shopping Cart</summary>
+  <% if @cart.empty? %>
+    <p>Nothing is inside your shopping cart.</p>
+  <% else %>
+    <ul>
+      <% @cart.each do |reel| %>
+        <li><%= reel.item_name %>  <%= button_to "Remove item", remove_from_cart_path(reel), method: :delete %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</details>
+<h2><%= user_signed_in? && policy(Reel).new? ? (link_to 'New', new_reel_path, class: 'btn btn-primary') : '' %></h2>
 <% @reels.each do |reel| %>
-  <p>
+  <ul>
     <%= cl_image_tag reel.reel_pic.key, transformation: ["media_lib_thumb"], cloud_name: 'dm2ebszpf' %>
-    <%= link_to reel.brand.brand, reel %>
-    <%= link_to reel.item_name, reel %>
-  </p>
+    <li><%= link_to reel.brand.brand, reel %></li>
+    <li><%= link_to reel.item_name, reel %></li>
+    <li><%= number_to_currency reel.price %></li>
+    <% if @cart.include?(reel) %>
+      <p><%= button_to 'Remove from cart', remove_from_cart_path(reel), method: :delete %></p>
+    <% else %>
+      <li><%= button_to 'Add to cart', add_to_cart_path(reel.id), method: :post %></li>
+    <% end %>
+  </ul>
 <% end %>
-

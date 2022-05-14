@@ -17,7 +17,7 @@ class ReelPolicy
   end
 
   def create?
-   @user.has_role? :admin
+   return @user && @user.has_any_role?(:admin, :customer)
   end
 
   def new?
@@ -25,7 +25,7 @@ class ReelPolicy
   end
 
   def update?
-    return @user && @user.has_role?(:admin)
+    return @user && @user.has_any_role?(:admin, :customer)
   end
 
   def edit?
@@ -33,8 +33,17 @@ class ReelPolicy
   end
 
   def destroy?
-    return @user && @user.has_role?(:admin)
+    return @user.has_role? :admin
   end
+
+  def add_to_cart?
+    return @user && @user.has_any_role?(:admin, :customer)
+  end
+
+  def remove_from_cart?
+    add_to_cart?
+  end
+
 
   class Scope
     def initialize(user, scope)

@@ -83,3 +83,5 @@ gem "dotenv-rails", "~> 2.7"
 gem "rolify", "~> 6.0"
 
 gem "pundit", "~> 2.2"
+
+gem "stripe", "~> 6.0"

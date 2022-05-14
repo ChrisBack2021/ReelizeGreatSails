@@ -27,9 +27,9 @@ Brand.create(brand: "Daiwa")
 ReelType.create(reel_type: "Spinning")
 ReelType.create(reel_type: "Overhead")
 
-Reel.create!(item_name: "Certate", size: "5000", description: "Great", price: "700", item_condition: "good", brand_id: 2, reel_type_id: 1)
-Reel.create(item_name: "Exist", size: "2500", description: "Great", price: "800", item_condition: "good", brand_id: 2, reel_type_id: 1)
-Reel.create(item_name: "Saltiga", size: "5000", description: "Great", price: "1200", item_condition: "good", brand_id: 2, reel_type_id: 1)
+Reel.create!(item_name: "Certate", size: "5000", description: "Great", price: "70000", item_condition: "good", brand_id: 2, reel_type_id: 1)
+Reel.create(item_name: "Exist", size: "2500", description: "Great", price: "80000", item_condition: "good", brand_id: 2, reel_type_id: 1)
+Reel.create(item_name: "Saltiga", size: "5000", description: "Great", price: "120000", item_condition: "good", brand_id: 2, reel_type_id: 1)
 
 Reel.create(item_name: "Stella", size: "10000", description: "Great", price: "1100", item_condition: "good", brand_id: 1, reel_type_id: 1)
 Reel.create(item_name: "Vanford", size: "3000", description: "Great", price: "250", item_condition: "good", brand_id: 1, reel_type_id: 1)
@@ -41,7 +41,7 @@ Reel.create(item_name: "Saltiga Star Drag Overhead Reel", description: "Great", 
 
 Reel.create(item_name: "Ocea Jigger F Custom", description: "Great", price: "700", item_condition: "good", brand_id: 1, reel_type_id: 2)
 Reel.create(item_name: "Ocea Jigger Conquest Limited", description: "Great", price: "730", item_condition: "good", brand_id: 1, reel_type_id: 2)
-Reel.create(item_name: "Ocea Jigger Grappler Jigging Reel", description: "Great", price: "400", item_condition: "good", brand_id: 1, reel_type_id: 2)
+Reel.create(item_name: "Ocea Jigger Grappler Jigging Reel", description: "Great", price: "40000", item_condition: "good", brand_id: 1, reel_type_id: 2)
 
 
 

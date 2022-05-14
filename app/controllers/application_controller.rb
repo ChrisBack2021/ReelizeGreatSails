@@ -5,7 +5,7 @@ rescue_from Pundit::NotAuthorizedError, with: :forbidden
 
 private
   def forbidden
-    flash[:alert] = "You are authorized to perform that action"
+    flash[:alert] = "You are not authorized to attempt that action"
     redirect_to root_path
   end
 
