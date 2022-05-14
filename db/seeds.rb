@@ -13,8 +13,13 @@ Brand.destroy_all
 ReelType.destroy_all
 
 
-User.create!(email: 'admin@test.com', password: '123321')
+
+a = User.create!(email: 'admin@test.com', password: '123321')
 Profile.create(first_name: 'Admin', last_name: 'Admin', age: 51, user_id: 1)
+a.add_role :admin
+
+User.create!(email: 'foo@bar.com', password: '123321')
+Profile.create(first_name: 'Foo', last_name: 'Bar', age: 15, user_id: 2)
 
 Brand.create(brand: "Shimano")
 Brand.create(brand: "Daiwa")
@@ -22,7 +27,7 @@ Brand.create(brand: "Daiwa")
 ReelType.create(reel_type: "Spinning")
 ReelType.create(reel_type: "Overhead")
 
-Reel.create(item_name: "Certate", size: "5000", description: "Great", price: "700", item_condition: "good", brand_id: 2, reel_type_id: 1)
+Reel.create!(item_name: "Certate", size: "5000", description: "Great", price: "700", item_condition: "good", brand_id: 2, reel_type_id: 1)
 Reel.create(item_name: "Exist", size: "2500", description: "Great", price: "800", item_condition: "good", brand_id: 2, reel_type_id: 1)
 Reel.create(item_name: "Saltiga", size: "5000", description: "Great", price: "1200", item_condition: "good", brand_id: 2, reel_type_id: 1)
 

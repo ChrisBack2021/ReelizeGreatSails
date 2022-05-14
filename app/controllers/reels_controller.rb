@@ -1,5 +1,7 @@
 class ReelsController < ApplicationController
+
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :check_user
   before_action :set_reel, only: [:show, :edit, :update, :destroy]
   before_action :set_brand_reel_type, only: [:new, :edit, :create, :update]
 
@@ -52,6 +54,12 @@ class ReelsController < ApplicationController
 
 
 private
+
+  def check_user
+    authorize Reel
+  end
+
+
   # Uses params id to find a reel
   def set_reel
     @reel = Reel.find(params[:id])

@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-
+  before_action :authenticate_user!
   # Shows current profile info
   def index
     @profile = current_user.profile

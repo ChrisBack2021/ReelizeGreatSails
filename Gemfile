@@ -79,3 +79,7 @@ gem "cloudinary", "~> 1.23"
 gem "activestorage-cloudinary-service", "~> 0.2.3"
 
 gem "dotenv-rails", "~> 2.7"
+
+gem "rolify", "~> 6.0"
+
+gem "pundit", "~> 2.2"
