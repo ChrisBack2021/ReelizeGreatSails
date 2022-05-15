@@ -1,6 +1,6 @@
 class ReelsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
   before_action :check_user
   before_action :set_reel, only: [:show, :edit, :update, :destroy]
   before_action :set_brand_reel_type, only: [:new, :edit, :create, :update]
@@ -10,6 +10,7 @@ class ReelsController < ApplicationController
     set_brand_reel_type
   end
 
+  # Creating new reel, has to pass validation.
   def create
     @reel = Reel.create(reel_params)
     if @reel.valid?
@@ -29,11 +30,13 @@ class ReelsController < ApplicationController
   def show
     @reel = Reel.find(params[:id])
   
+    # If no reel, redirects to root path. To stop people from enterring in url.
     if @reel.nil?
       redirect_to root_path
       return
     end
 
+    # Creating a stripe session for payment
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       customer_email: current_user.email,
@@ -54,7 +57,6 @@ class ReelsController < ApplicationController
       cancel_url: "#{root_url}reels"
     )
     @session_id = @session.id
-    @reel.destroy
   end
 
   def edit
@@ -83,7 +85,6 @@ private
   def check_user
     authorize Reel
   end
-
 
   # Uses params id to find a reel
   def set_reel

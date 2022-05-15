@@ -1,4 +1,6 @@
 <h1>Catalogue</h1>
+
+<%# Shopping cart %>
 <details>
   <summary>Shopping Cart</summary>
   <% if @cart.empty? %>
@@ -11,7 +13,11 @@
     </ul>
   <% end %>
 </details>
+
+<%# if user signed in and authorised to new, displays new button. %>
 <h2><%= user_signed_in? && policy(Reel).new? ? (link_to 'New', new_reel_path, class: 'btn btn-primary') : '' %></h2>
+
+<%# Displays brief information about each reel %>
 <% @reels.each do |reel| %>
   <ul>
     <%= cl_image_tag reel.reel_pic.key, transformation: ["media_lib_thumb"], cloud_name: 'dm2ebszpf' %>

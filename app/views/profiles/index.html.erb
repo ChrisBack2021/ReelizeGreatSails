@@ -1,5 +1,6 @@
 <h1>My Profile</h1>
 
+<%# profile information %>
 <ul>
   <li> First name: <%= @profile.first_name %></li>
   <li> Last name: <%= @profile.last_name %></li>
@@ -7,15 +8,7 @@
   <li> Email: <%= current_user.email %></li>
 </ul>
 
+<%# Link to edit profile information %>
 <%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning me-2' %>
 
-<h1>Shopping cart</h1>
-  <% if @cart.empty? %>
-    <p>Nothing is inside your shopping cart.</p>
-  <% else %>
-    <ul>
-      <% @cart.each do |reel| %>
-        <li><%= reel.item_name %>  <%= button_to "Remove item", remove_from_cart_path(reel), method: :delete %></li>
-      <% end %>
-    </ul>
-  <% end %>
+

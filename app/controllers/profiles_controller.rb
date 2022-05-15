@@ -1,12 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile
+  
   # Shows current profile info
   def index
-    session[:cart] ||= []
-    @cart = Reel.find(session[:cart])
   end
-
 
   def edit
   end
@@ -18,6 +16,7 @@ class ProfilesController < ApplicationController
 
   private
 
+    #profile of current user only
   def set_profile
     @profile = current_user.profile
   end
