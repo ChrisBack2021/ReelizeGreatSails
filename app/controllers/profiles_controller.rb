@@ -3,10 +3,10 @@ class ProfilesController < ApplicationController
   before_action :set_profile
   # Shows current profile info
   def index
+    session[:cart] ||= []
+    @cart = Reel.find(session[:cart])
   end
 
-  def create
-  end
 
   def edit
   end
@@ -15,7 +15,6 @@ class ProfilesController < ApplicationController
     @profile.update(profile_params)
     redirect_to profiles_path
   end
-
 
   private
 

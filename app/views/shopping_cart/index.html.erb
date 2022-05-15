@@ -1,0 +1,11 @@
+
+  <h1>Shopping Cart</h1>
+  <% if @cart.empty? %>
+    <p>Nothing is inside your shopping cart.</p>
+  <% else %>
+    <ul>
+      <% @cart.each do |reel| %>
+        <li><%= reel.item_name %>  <%= button_to "Remove item", remove_from_cart_path(reel), method: :delete %></li>
+      <% end %>
+    </ul>
+  <% end %>

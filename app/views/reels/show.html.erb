@@ -14,6 +14,8 @@
   <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
 </h2>
 
+<%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: @reel.id}, remote: true %>
+
 
 
 <div class="btn-toolbar ">

@@ -11,12 +11,17 @@ Rails.application.routes.draw do
 
   get '/profiles', to: 'profiles#index'
   get '/profiles/:id/edit', to: 'profiles#edit', as: 'edit_profile'
-  patch '/profiles/:id', to: 'profiles#update'
   post '/profiles/:id/edit', to: 'profiles#update'
-  get '/profiles/:id/edit', to: 'profiles#show'
 
-  post 'reels/add_to_cart/:id', to: 'reels#add_to_cart', as: 'add_to_cart'
-  delete 'reels/remove_from_cart/:id', to: 'reels#remove_from_cart', as: 'remove_from_cart'
+  get '/shopping_cart', to: 'shopping_cart#index'
+  post 'shopping_cart/add_to_cart/:id', to: 'shopping_cart#add_to_cart', as: 'add_to_cart'
+  delete 'shopping_cart/remove_from_cart/:id', to: 'shopping_cart#remove_from_cart', as: 'remove_from_cart'
+
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+  end
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

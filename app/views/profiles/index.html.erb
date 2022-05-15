@@ -8,3 +8,14 @@
 </ul>
 
 <%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning me-2' %>
+
+<h1>Shopping cart</h1>
+  <% if @cart.empty? %>
+    <p>Nothing is inside your shopping cart.</p>
+  <% else %>
+    <ul>
+      <% @cart.each do |reel| %>
+        <li><%= reel.item_name %>  <%= button_to "Remove item", remove_from_cart_path(reel), method: :delete %></li>
+      <% end %>
+    </ul>
+  <% end %>
