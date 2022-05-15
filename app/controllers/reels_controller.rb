@@ -23,12 +23,38 @@ class ReelsController < ApplicationController
   # Shows all reels
   def index
     @reels = Reel.all
-    
   end
   
   # Shows each individual reel
   def show
     @reel = Reel.find(params[:id])
+  
+    if @reel.nil?
+      redirect_to root_path
+      return
+    end
+
+    @session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: current_user.email,
+      line_items: [{
+        name: @reel.item_name,
+        description: @reel.description,
+        amount: @reel.price,
+        currency: 'aud',
+        quantity: 1
+      }],
+      payment_intent_data: {
+        metadata: {
+          reel_id: @reel.id,
+          user_id: current_user.id
+        }
+      },
+      success_url: "#{root_url}payments/success?reelId=#{@reel.id}",
+      cancel_url: "#{root_url}reels"
+    )
+    @session_id = @session.id
+    @reel.destroy
   end
 
   def edit

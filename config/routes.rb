@@ -17,11 +17,8 @@ Rails.application.routes.draw do
   post 'shopping_cart/add_to_cart/:id', to: 'shopping_cart#add_to_cart', as: 'add_to_cart'
   delete 'shopping_cart/remove_from_cart/:id', to: 'shopping_cart#remove_from_cart', as: 'remove_from_cart'
 
-  scope '/checkout' do
-    post 'create', to: 'checkout#create', as: 'checkout_create'
-    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
-    get 'success', to: 'checkout#success', as: 'checkout_success'
-  end
+
+  get '/payments/success', to: 'payments#success'
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

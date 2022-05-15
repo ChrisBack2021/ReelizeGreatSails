@@ -11,8 +11,6 @@ private
     redirect_to root_path
   end
 
-  private
-
   def initialize_session
     session[:cart] ||= []
   end

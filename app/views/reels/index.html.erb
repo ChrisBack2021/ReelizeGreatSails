@@ -17,7 +17,7 @@
     <%= cl_image_tag reel.reel_pic.key, transformation: ["media_lib_thumb"], cloud_name: 'dm2ebszpf' %>
     <li><%= link_to reel.brand.brand, reel %></li>
     <li><%= link_to reel.item_name, reel %></li>
-    <li><%= number_to_currency reel.price %></li>
+    <li><%= number_to_currency reel.price/100 %></li>
     <% if @cart.include?(reel) %>
       <p><%= button_to 'Remove from cart', remove_from_cart_path(reel), method: :delete %></p>
     <% else %>
