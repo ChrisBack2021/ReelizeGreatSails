@@ -29,12 +29,6 @@ class ReelsController < ApplicationController
   # Shows each individual reel
   def show
     @reel = Reel.find(params[:id])
-  
-    # If no reel, redirects to root path. To stop people from enterring in url.
-    if @reel.nil?
-      redirect_to root_path
-      return
-    end
 
     # Creating a stripe session for payment
     @session = Stripe::Checkout::Session.create(
@@ -60,6 +54,9 @@ class ReelsController < ApplicationController
   end
 
   def edit
+    unless current_user.id == @reel.user_id or current_user.id == 1
+      redirect_to reels_path, alert: "Only the owner or admin are allowed to perform that action."
+    end
   end
 
     # Updates one particular reel
@@ -75,6 +72,9 @@ class ReelsController < ApplicationController
 
   # Destroys one particular reel and removes pic.
   def destroy
+     unless current_user.id == @reel.user_id or current_user.id == 1
+      redirect_to reels_path, alert: "Only the owner or admin are allowed to perform that action."
+    end
     @reel.reel_pic.purge
     @reel.destroy
     redirect_to reels_path
@@ -99,7 +99,7 @@ private
 
   # Strong params to stop sql injections
   def reel_params
-    params.require(:reel).permit(:item_name, :size, :description, :price, :item_condition, :brand_id, :reel_type_id, :reel_pic)
+    params.require(:reel).permit(:item_name, :size, :description, :price, :item_condition, :brand_id, :reel_type_id, :reel_pic, :user_id)
   end
 
 end

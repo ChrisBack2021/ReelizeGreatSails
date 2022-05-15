@@ -35,6 +35,10 @@
     <%= f.file_field :reel_pic %>
   </fieldset>
   <fieldset>
+   <%= f.label "Tick this box to prove you are a user and not a bot" %>
+   <%= f.check_box :user_id %>
+  </fieldset>
+  <fieldset>
     <%= f.submit %>
   </fieldset>
 <% end %>
