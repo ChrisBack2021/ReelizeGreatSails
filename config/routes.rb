@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get '/profiles', to: 'profiles#index'
   get '/profiles/:id/edit', to: 'profiles#edit', as: 'edit_profile'
   post '/profiles/:id/edit', to: 'profiles#update'
+  get 'profiles/:id', to: 'profiles#show', as: 'profile'
+
+
 
   get '/shopping_cart', to: 'shopping_cart#index'
   post 'shopping_cart/add_to_cart/:id', to: 'shopping_cart#add_to_cart', as: 'add_to_cart'

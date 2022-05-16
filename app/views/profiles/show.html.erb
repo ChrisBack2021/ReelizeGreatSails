@@ -1,0 +1,19 @@
+<h1>My Profile</h1>
+
+<%# profile information %>
+<ul>
+  <li> First name: <%= @profile.first_name %></li>
+  <li> Last name: <%= @profile.last_name %></li>
+  <li> Age: <%= @profile.age%></li>
+  <li> Email: <%= current_user.email %></li>
+</ul>
+
+<%# Link to edit profile information %>
+<%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning me-2' %>
+
+<% if !@baught_items.nil?%>
+<h2>Purchased item</h2>
+  <% @bought_items.each do |item| %>
+    <%= item %>
+  <% end %>
+<% end %>

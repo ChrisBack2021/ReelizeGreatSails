@@ -1,20 +1,24 @@
 <h1>Catalogue</h1>
 
-<%# Shopping cart %>
-
 <%# if user signed in and authorised to new, displays new button. %>
-<h2><%= user_signed_in? && policy(Reel).new? ? (link_to 'New', new_reel_path, class: 'btn btn-primary') : '' %></h2>
-
+<h2><%= user_signed_in? && policy(Reel).new? ? (link_to 'Sell', new_reel_path, class: 'btn btn-primary') : '' %></h2>
 <%# Displays brief information about each reel %>
 <% @reels.each do |reel| %>
-  <ul>
-    <%= cl_image_tag reel.reel_pic.key, transformation: ["media_lib_thumb"], cloud_name: 'dm2ebszpf' %>
-    <li><%= link_to("#{reel.brand.brand} #{reel.item_name}", reel) %></li>
-    <li><%= number_to_currency reel.price/100 %></li>
-    <% if @cart.include?(reel) %>
-      <p><%= button_to 'Remove from cart', remove_from_cart_path(reel), method: :delete %></p>
-    <% else %>
-      <li><%= button_to 'Add to cart', add_to_cart_path(reel.id), method: :post %></li>
-    <% end %>
-  </ul>
-<% end %>
+  <div class="card" style="width: 18rem;">
+    <%= cl_image_tag(reel.reel_pic.key, height: 225, width: 150, crop: :scale, cloud_name: 'dm2ebszpf', class: "card-img-top") %>
+    <div class="card-body">
+      <ul>Item:<%= "#{reel.brand.brand} #{reel.item_name}" %></ul>
+      <ul>Price: <%= number_to_currency reel.price %></ul>
+      <ul>Description: <%= reel.description %></ul>
+      <ul>Item condition: <%= reel.item_condition %></ul>
+      <div class="btn-toolbar ">
+        <% if @cart.include?(reel) %>
+          <p><%= button_to 'Remove from cart', remove_from_cart_path(reel), method: :delete, class: 'btn btn-warning ps-1  me-1' %></p>
+        <% else %>
+          <p><%= button_to 'Add to cart', add_to_cart_path(reel.id), method: :post, class: 'btn btn-success me-1' %></p>
+        <% end %>
+        <%= link_to 'More info', reel, class: 'btn btn-info me-1' %>
+      </div>
+    </div>
+  <% end %>
+</div>

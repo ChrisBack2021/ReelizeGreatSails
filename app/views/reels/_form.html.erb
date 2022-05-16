@@ -1,43 +1,43 @@
 <%= form_with(model: @reel, data: {turbo: false}) do |f| %>
-  <fieldset>
-    <%= f.label :item_name %>
+  <fieldset class= 'm-auto'>
+    <%= f.label :item_name%>
     <%= f.text_field :item_name %>
   </fieldset>
-  <fieldset>
-    <%= f.label :size %>
+  <fieldset class= 'me-5'>
+    <%= f.label :size, class: 'mt-2'%>
     <%= f.text_field :size %>
   </fieldset>
   <fieldset>
-    <%= f.label :description %>
+    <%= f.label :description, class: 'mt-2' %>
     <%= f.text_field :description %>
   </fieldset>
   <fieldset>
-    <%= f.label :price %>
+    <%= f.label :price, class: 'mt-2' %>
     <%= f.text_field :price %>
   </fieldset>
   <fieldset>
-    <%= f.label :item_condition %>
+    <%= f.label :item_condition, class: 'mt-2' %>
     <%= f.text_field :item_condition %>
   </fieldset>
   <fieldset>
-    <%= f.label :brand_id %>
+    <%= f.label :brand_id, class: 'mt-2' %>
     <%= f.collection_select :brand_id, @brands, :id, :brand  %>
   </fieldset>
   <fieldset>
-    <%= f.label :reel_type_id %>
+    <%= f.label :reel_type_id, class: 'mt-2' %>
     <%= f.collection_select :reel_type_id, @reel_types, :id, :reel_type  %>
   </fieldset>
   <fieldset>
 
   </fieldset>
   <fieldset>
-    <%= f.label :reel_pic %>
+    <%= f.label :reel_pic, class: 'mt-2'%>
     <%= f.file_field :reel_pic %>
   </fieldset>
-  <fieldset>
+  <fieldset> 
    <%= f.label "Tick this box to prove you are a user." %>
    <%= f.check_box :user_id %>
-  </fieldset>
+  </fieldset> 
   <fieldset>
     <%= f.submit %>
   </fieldset>

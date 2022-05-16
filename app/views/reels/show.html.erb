@@ -8,7 +8,7 @@
 <h2> 
   <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
   <ul>Size: <%= @reel.size %></ul>
-  <ul>Price: <%= number_to_currency @reel.price/100.00 %></ul>
+  <ul>Price: <%= number_to_currency @reel.price %></ul>
   <ul>Description: <%= @reel.description %></ul>
   <ul>Item condition: <%= @reel.item_condition %></ul>
   <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
@@ -26,7 +26,9 @@
 <%= link_to 'Back to catalogue', reels_path, class: 'btn btn-primary' %>
 
 <%# Below is for Stripe %>
-<button data-stripe="payment">Buy Now for <%= number_to_currency(@reel.price/100.00) %></button>
+
+<button data-stripe="payment", class= 'btn btn-success ms-2'>Buy Now for <%= number_to_currency(@reel.price) %></button>
+
 
 <script src="https://js.stripe.com/v3/"></script>
 

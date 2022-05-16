@@ -1,14 +1,24 @@
-<h1>My Profile</h1>
-
+<h1>All Profiles</h1>
 <%# profile information %>
-<ul>
-  <li> First name: <%= @profile.first_name %></li>
-  <li> Last name: <%= @profile.last_name %></li>
-  <li> Age: <%= @profile.age%></li>
-  <li> Email: <%= current_user.email %></li>
-</ul>
+<table>
+  <tr>
+    <th>User ID</th>
+    <th>First Name</th>
+    <th>Surname</th>
+    <th>Age</th>
+    <th>Email</th>
+  </tr>
+<% @profiles.each do |profile| %>
+<tr>
+  <td><%= profile.user_id %></td>
+  <td><%= profile.first_name %></td>
+  <td><%= profile.last_name %></td>
+  <td><%= profile.age %></td>
+  <td><%= profile.user.email %></td>
+  <td><%= link_to 'Show profile', profile, class: 'btn btn-secondary' %></td>
+</tr>
+  <% end %>
+</table>
 
-<%# Link to edit profile information %>
-<%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning me-2' %>
 
 

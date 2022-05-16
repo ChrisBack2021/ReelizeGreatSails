@@ -1,12 +1,15 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile
+  before_action :check_profile
+  before_action :set_profile, only: [:show, :update, :edit]
   
   # Shows current profile info
   def index
+    @profiles = Profile.all
   end
 
   def edit
+    unauthorised_entry
   end
 
   def update
@@ -14,11 +17,18 @@ class ProfilesController < ApplicationController
     redirect_to profiles_path
   end
 
+  def show
+    unauthorised_entry
+  end
+
   private
 
-    #profile of current user only
+  def check_profile
+    authorize Profile
+  end
+
   def set_profile
-    @profile = current_user.profile
+    @profile = Profile.find(params[:id])
   end
 
   def profile_params

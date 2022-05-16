@@ -28,8 +28,6 @@ class ReelsController < ApplicationController
   
   # Shows each individual reel
   def show
-    @reel = Reel.find(params[:id])
-
     # Creating a stripe session for payment
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -37,7 +35,7 @@ class ReelsController < ApplicationController
       line_items: [{
         name: "#{@reel.brand.brand} #{@reel.item_name}",
         description: @reel.description,
-        amount: @reel.price,
+        amount: (@reel.price)*100,
         currency: 'aud',
         quantity: 1
       }],
@@ -55,9 +53,7 @@ class ReelsController < ApplicationController
 
   # Further authorisation
   def edit
-    unless current_user.id == @reel.user_id || current_user.id == 1
-      redirect_to reels_path, alert: "Only the owner or admin are allowed to perform that action."
-    end
+    unauthorised_entry
   end
 
     # Updates one particular reel
@@ -73,9 +69,7 @@ class ReelsController < ApplicationController
 
   # Destroys one particular reel and removes pic.
   def destroy
-     unless current_user.id == @reel.user_id or current_user.id == 1
-      redirect_to reels_path, alert: "Only the owner or admin are allowed to perform that action."
-    end
+    unauthorised_entry
     @reel.reel_pic.purge
     @reel.destroy
     redirect_to reels_path
