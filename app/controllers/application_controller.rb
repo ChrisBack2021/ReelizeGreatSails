@@ -18,9 +18,10 @@ private
     session[:cart] ||= []
   end
 
-  
+
   def shopping_cart
     @cart = Reel.find(session[:cart])
   end
+
 
 end

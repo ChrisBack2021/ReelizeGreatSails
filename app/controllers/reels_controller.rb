@@ -12,7 +12,7 @@ class ReelsController < ApplicationController
 
   # Creating new reel, has to pass validation.
   def create
-    @reel = Reel.create(reel_params)
+    @reel = Reel.create!(reel_params)
     if @reel.valid?
       redirect_to @reel
     else
@@ -35,8 +35,9 @@ class ReelsController < ApplicationController
       payment_method_types: ['card'],
       customer_email: current_user.email,
       line_items: [{
-        name: @reel.item_name,
+        name: "#{@reel.brand.brand} #{@reel.item_name}",
         description: @reel.description,
+        images: ['cl_image_tag @reel.reel_pic.key'],
         amount: @reel.price,
         currency: 'aud',
         quantity: 1
@@ -47,14 +48,15 @@ class ReelsController < ApplicationController
           user_id: current_user.id
         }
       },
-      success_url: "#{root_url}payments/success?reelId=#{@reel.id}",
+      success_url: "#{root_url}payments/success/#{@reel.id}",
       cancel_url: "#{root_url}reels"
     )
     @session_id = @session.id
   end
 
+  # Further authorisation
   def edit
-    unless current_user.id == @reel.user_id or current_user.id == 1
+    unless current_user.id == @reel.user_id || current_user.id == 1
       redirect_to reels_path, alert: "Only the owner or admin are allowed to perform that action."
     end
   end
@@ -62,10 +64,10 @@ class ReelsController < ApplicationController
     # Updates one particular reel
   def update
     begin
-      @reel.update!(reel_params)
+      @reel.update(reel_params)
       redirect_to @reel
     rescue
-      flash.now[:alert] = @reel.errors.full_messages.join('<br>')
+      flash.now[:alert] = @reel.errors.full_messages.join!('<br>')
     render 'edit'
     end
   end

@@ -9,3 +9,15 @@
       <% end %>
     </ul>
   <% end %>
+
+<button data-stripe="payment">Buy Now</button>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    document.querySelector("[data-stripe='payment']").addEventListener("click", () =>{ const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+    stripe.redirectToCheckout({
+      sessionId: "<%= @session_id %>"
+    });
+    })
+</script>

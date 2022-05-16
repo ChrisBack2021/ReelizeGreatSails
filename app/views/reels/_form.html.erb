@@ -28,14 +28,14 @@
     <%= f.collection_select :reel_type_id, @reel_types, :id, :reel_type  %>
   </fieldset>
   <fieldset>
-    <%= cl_image_tag @reel.reel_pic.key, transformation: ["media_lib_thumb"], cloud_name: 'dm2ebszpf' %>
+
   </fieldset>
   <fieldset>
     <%= f.label :reel_pic %>
     <%= f.file_field :reel_pic %>
   </fieldset>
   <fieldset>
-   <%= f.label "Tick this box to prove you are a user and not a bot" %>
+   <%= f.label "Tick this box to prove you are a user." %>
    <%= f.check_box :user_id %>
   </fieldset>
   <fieldset>

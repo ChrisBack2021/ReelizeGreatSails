@@ -1,18 +1,6 @@
 <h1>Catalogue</h1>
 
 <%# Shopping cart %>
-<details>
-  <summary>Shopping Cart</summary>
-  <% if @cart.empty? %>
-    <p>Nothing is inside your shopping cart.</p>
-  <% else %>
-    <ul>
-      <% @cart.each do |reel| %>
-        <li><%= reel.item_name %>  <%= button_to "Remove item", remove_from_cart_path(reel), method: :delete %></li>
-      <% end %>
-    </ul>
-  <% end %>
-</details>
 
 <%# if user signed in and authorised to new, displays new button. %>
 <h2><%= user_signed_in? && policy(Reel).new? ? (link_to 'New', new_reel_path, class: 'btn btn-primary') : '' %></h2>
@@ -21,8 +9,7 @@
 <% @reels.each do |reel| %>
   <ul>
     <%= cl_image_tag reel.reel_pic.key, transformation: ["media_lib_thumb"], cloud_name: 'dm2ebszpf' %>
-    <li><%= link_to reel.brand.brand, reel %></li>
-    <li><%= link_to reel.item_name, reel %></li>
+    <li><%= link_to("#{reel.brand.brand} #{reel.item_name}", reel) %></li>
     <li><%= number_to_currency reel.price/100 %></li>
     <% if @cart.include?(reel) %>
       <p><%= button_to 'Remove from cart', remove_from_cart_path(reel), method: :delete %></p>

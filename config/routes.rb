@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   delete 'shopping_cart/remove_from_cart/:id', to: 'shopping_cart#remove_from_cart', as: 'remove_from_cart'
 
 
-  get '/payments/success', to: 'payments#success'
+  get '/payments/success/:reel_id', to: 'payments#success'
+ 
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
