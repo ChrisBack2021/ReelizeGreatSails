@@ -11,9 +11,12 @@
 <%# Link to edit profile information %>
 <%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning me-2' %>
 
-<% if !@baught_items.nil?%>
-<h2>Purchased item</h2>
-  <% @bought_items.each do |item| %>
-    <%= item %>
-  <% end %>
+
+<h2>Listed items</h2>
+<% current_user.reels.each do |item| %>
+<li class="mt-2"><%= item.item_name %> - $<%= item.price %> <%= link_to 'View item', reel_path(item), class: 'btn btn-primary btn-sm' %></li>
 <% end %>
+
+<h3>Purchase history</h3>
+
+
