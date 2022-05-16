@@ -16,7 +16,7 @@ class ReelsController < ApplicationController
     if @reel.valid?
       redirect_to @reel
     else
-      flash.now[:alert]
+      flash.now[:alert] = @reel.errors.full_messages.join('<br>')
       render 'new'
     end
   end
@@ -37,7 +37,6 @@ class ReelsController < ApplicationController
       line_items: [{
         name: "#{@reel.brand.brand} #{@reel.item_name}",
         description: @reel.description,
-        images: ['cl_image_tag @reel.reel_pic.key'],
         amount: @reel.price,
         currency: 'aud',
         quantity: 1
