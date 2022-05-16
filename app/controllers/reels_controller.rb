@@ -16,7 +16,7 @@ class ReelsController < ApplicationController
     if @reel.valid?
       redirect_to @reel
     else
-      flash.now[:alert] = @reel.errors.full_messages.join('<br>')
+      flash.now[:alert]
       render 'new'
     end
   end
