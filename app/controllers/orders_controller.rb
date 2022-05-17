@@ -1,4 +1,4 @@
-class ShoppingCartController < ApplicationController
+class OrderController < ApplicationController
 
   # adds to cart and converts param_id string to integer
   def add_to_cart
@@ -38,7 +38,7 @@ class ShoppingCartController < ApplicationController
           }
         },
         success_url: "#{root_url}payments/success",
-        cancel_url: "#{root_url}order_menu_items"
+        cancel_url: "#{root_url}"
       )
       @session_id = session.id
   end

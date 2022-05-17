@@ -34,7 +34,7 @@ class ReelPolicy
   end
 
   def destroy?
-    return @user && @user.has_any_role?(:admin)
+    return @user.has_any_role?(:admin, :customer)
   end
 
   # def add_to_cart?

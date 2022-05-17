@@ -1,9 +1,9 @@
 class PaymentsController < ApplicationController
 
- 
   def success
-    reelid = params[:reel_id]
-    Reel.find(reelid).destroy
+    id = params[:reel_id]
+    Reel.find(id)
+    Purchase.create(reel_id: id, user_id: current_user.id)
   end
 
 

@@ -1,5 +1,5 @@
 <h1>Catalogue</h1>
-
+<% user_signed_in? ? (current_user.add_role :customer) : '' %>
 <%# if user signed in and authorised to new, displays new button. %>
 <h2><%= user_signed_in? && policy(Reel).new? ? (link_to 'Sell', new_reel_path, class: 'btn btn-primary') : '' %></h2>
 <%# Displays brief information about each reel %>

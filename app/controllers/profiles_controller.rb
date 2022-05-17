@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    unauthorised_entry
+    unauthorised_profile
   end
 
   def update
@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    unauthorised_entry
+    unauthorised_profile
   end
 
   private

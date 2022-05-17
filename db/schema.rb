@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_15_085000) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_17_064443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_15_085000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "order"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -56,6 +62,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_15_085000) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "reel_id", null: false
+    t.index ["reel_id"], name: "index_purchases_on_reel_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "reel_types", force: :cascade do |t|
@@ -90,6 +105,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_15_085000) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
+  create_table "user_orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_user_orders_on_order_id"
+    t.index ["user_id"], name: "index_user_orders_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -113,7 +137,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_15_085000) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "profiles", "users"
+  add_foreign_key "purchases", "reels"
+  add_foreign_key "purchases", "users"
   add_foreign_key "reels", "brands"
   add_foreign_key "reels", "reel_types"
   add_foreign_key "reels", "users"
+  add_foreign_key "user_orders", "orders"
+  add_foreign_key "user_orders", "users"
 end

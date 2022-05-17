@@ -16,9 +16,9 @@ Rails.application.routes.draw do
 
 
 
-  get '/shopping_cart', to: 'shopping_cart#index'
-  post 'shopping_cart/add_to_cart/:id', to: 'shopping_cart#add_to_cart', as: 'add_to_cart'
-  delete 'shopping_cart/remove_from_cart/:id', to: 'shopping_cart#remove_from_cart', as: 'remove_from_cart'
+  get '/order', to: 'order#index'
+  post 'order/add_to_cart/:id', to: 'order#add_to_cart', as: 'add_to_cart'
+  delete 'order/remove_from_cart/:id', to: 'order#remove_from_cart', as: 'remove_from_cart'
 
 
   get '/payments/success/:reel_id', to: 'payments#success'

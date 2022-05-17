@@ -14,9 +14,15 @@ private
     redirect_to root_path
   end
 
-  def unauthorised_entry
+  def unauthorised_profile
     unless current_user.id == @profile.id || current_user.id == 1
-      redirect_to reels_path, alert: "You are not authorized to perform that action"
+      redirect_to root_path, alert: "You are not authorized to perform that action"
+    end
+  end
+
+  def unauthorised_reel
+    unless current_user.id == @reel.user_id || current_user.id == 1
+      redirect_to root_path, alert: "You are not authorized to perform that action"
     end
   end
 
@@ -28,6 +34,10 @@ private
 
   def shopping_cart
     @cart = Reel.find(session[:cart])
+  end
+
+  def purchase_history
+    @history = []
   end
 
 

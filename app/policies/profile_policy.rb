@@ -26,11 +26,11 @@ class ProfilePolicy
   end
 
   def update?
-    return @user && @user.has_any_role?(:admin, :customer)
+    true
   end
 
   def edit?
-    update?
+    true
   end
 
   def destroy?

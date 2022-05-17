@@ -14,36 +14,37 @@ ReelType.destroy_all
 
 
 
-a = User.create!(email: 'admin@test.com', password: '123321')
+first_user = User.create!(email: 'admin@test.com', password: '123321')
 Profile.create(first_name: 'Admin', last_name: 'Admin', age: 51, user_id: 1)
-a.add_role :admin
+first_user.add_role :admin
 
-b = User.create!(email: 'foo@bar.com', password: '123321')
+second_user = User.create!(email: 'foo@bar.com', password: '123321')
 Profile.create(first_name: 'Foo', last_name: 'Bar', age: 15, user_id: 2)
-b.add_role :customer
+second_user.add_role :customer
 
-Brand.create(brand: "Shimano")
-Brand.create(brand: "Daiwa")
+Profile.create(first_name: 'Jerry', last_name: "One", age: 21)
 
-c = ReelType.create(reel_type: "Spinning")
-d = ReelType.create(reel_type: "Overhead")
+shim = Brand.create(brand: "Shimano")
+dai = Brand.create(brand: "Daiwa")
 
-Reel.create!(item_name: "Certate", size: "5000", description: "Great", price: "700", item_condition: "good", brand_id: 2, reel_type: c, user: b)
-Reel.create(item_name: "Exist", size: "2500", description: "Great", price: "800", item_condition: "good", brand: 2, reel_type: 1, user: b)
-Reel.create(item_name: "Saltiga", size: "5000", description: "Great", price: "1200", item_condition: "good", brand_id: 2, reel_type_id: 1, user_id: 2)
+spin = ReelType.create(reel_type: "Spinning")
+oh = ReelType.create(reel_type: "Overhead")
 
-Reel.create(item_name: "Stella", size: "10000", description: "Great", price: "1100", item_condition: "good", brand_id: 1, reel_type_id: 1, user_id: 2)
-Reel.create(item_name: "Vanford", size: "3000", description: "Great", price: "250", item_condition: "good", brand_id: 1, reel_type_id: 1, user_id: 2)
-Reel.create(item_name: "Twin Power XD", size: "5000", description: "Great", price: "600", item_condition: "good", brand_id: 1, reel_type_id: 1, user_id: 2)
+Reel.create!(item_name: "Certate", size: "5000", description: "Great", price: "700", item_condition: "good", brand: dai, reel_type: spin, user: second_user)
+Reel.create(item_name: "Exist", size: "2500", description: "Great", price: "800", item_condition: "good", brand: dai, reel_type: spin, user: second_user)
+Reel.create(item_name: "Saltiga", size: "5000", description: "Great", price: "1200", item_condition: "good", brand: dai, reel_type: spin, user: second_user)
 
-Reel.create(item_name: "22 Saltiga 15", description: "Great", price: "850", item_condition: "good", brand_id: 2, reel_type_id: 2, user_id: 2)
-Reel.create(item_name: "21 Saltiga IC 300", description: "Great", price: "850", item_condition: "good", brand_id: 2, reel_type_id: 2, user_id: 2)
-Reel.create(item_name: "Saltiga Star Drag Overhead Reel", description: "Great", price: "650", item_condition: "good", brand_id: 2, reel_type_id: 2, user_id: 2)
+Reel.create(item_name: "Stella", size: "10000", description: "Great", price: "1100", item_condition: "good", brand: shim, reel_type: spin, user: second_user)
+Reel.create(item_name: "Vanford", size: "3000", description: "Great", price: "250", item_condition: "good", brand: shim, reel_type: spin, user: second_user)
+Reel.create(item_name: "Twin Power XD", size: "5000", description: "Great", price: "600", item_condition: "good", brand: shim, reel_type: spin, user: second_user)
 
-Reel.create(item_name: "Ocea Jigger F Custom", description: "Great", price: "700", item_condition: "good", brand_id: 1, reel_type_id: 2, user_id: 2)
-Reel.create(item_name: "Ocea Jigger Conquest Limited", description: "Great", price: "730", item_condition: "good", brand_id: 1, reel_type_id: 2, user_id: 2)
-Reel.create(item_name: "Ocea Jigger Grappler Jigging Reel", description: "Great", price: "400", item_condition: "good", brand_id: 1, reel_type_id: 2, user_id: 2)
+Reel.create(item_name: "22 Saltiga 15", description: "Great", price: "850", item_condition: "good", brand: dai, reel_type: oh, user: second_user)
+Reel.create(item_name: "21 Saltiga IC 300", description: "Great", price: "850", item_condition: "good", brand: dai, reel_type: oh, user: second_user)
+Reel.create(item_name: "Saltiga Star Drag Overhead Reel", description: "Great", price: "650", item_condition: "good", brand: dai, reel_type: oh, user: second_user)
 
+Reel.create(item_name: "Ocea Jigger F Custom", description: "Great", price: "700", item_condition: "good", brand: shim, reel_type: oh, user: second_user)
+Reel.create(item_name: "Ocea Jigger Conquest Limited", description: "Great", price: "730", item_condition: "good", brand: shim, reel_type: oh, user: second_user)
+Reel.create(item_name: "Ocea Jigger Grappler Jigging Reel", description: "Great", price: "400", item_condition: "good", brand: shim, reel_type: oh, user: second_user)
 
 
 

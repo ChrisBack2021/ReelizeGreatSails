@@ -55,7 +55,7 @@ class ReelsController < ApplicationController
 
   # Further authorisation
   def edit
-    unauthorised_entry
+    unauthorised_reel
   end
 
     # Updates one particular reel
@@ -71,10 +71,13 @@ class ReelsController < ApplicationController
 
   # Destroys one particular reel and removes pic.
   def destroy
-    unauthorised_entry
-    @reel.reel_pic.purge
-    @reel.destroy
-    redirect_to reels_path
+    if @reel.user_id == current_user.id || current_user.id == 1
+      @reel.reel_pic.purge
+      @reel.destroy
+      redirect_to reels_path
+    else
+      unauthorised_reel
+    end
   end
 
 
