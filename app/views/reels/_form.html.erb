@@ -34,7 +34,10 @@
     <%= f.label :reel_pic, class: 'mt-2'%>
     <%= f.file_field :reel_pic %>
   </fieldset>
-<% @reel%>
+  <fieldset> 
+   <%= f.label "Tick this box to prove you are a user." %>
+   <%= f.check_box :user_id %>
+  </fieldset> 
   <fieldset>
     <%= f.submit %>
   </fieldset>

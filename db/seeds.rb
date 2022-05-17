@@ -25,11 +25,11 @@ b.add_role :customer
 Brand.create(brand: "Shimano")
 Brand.create(brand: "Daiwa")
 
-ReelType.create(reel_type: "Spinning")
-ReelType.create(reel_type: "Overhead")
+c = ReelType.create(reel_type: "Spinning")
+d = ReelType.create(reel_type: "Overhead")
 
-Reel.create!(item_name: "Certate", size: "5000", description: "Great", price: "700", item_condition: "good", brand_id: 2, reel_type_id: 1, user_id: 2)
-Reel.create(item_name: "Exist", size: "2500", description: "Great", price: "800", item_condition: "good", brand_id: 2, reel_type_id: 1, user_id: 2)
+Reel.create!(item_name: "Certate", size: "5000", description: "Great", price: "700", item_condition: "good", brand_id: 2, reel_type: c, user: b)
+Reel.create(item_name: "Exist", size: "2500", description: "Great", price: "800", item_condition: "good", brand: 2, reel_type: 1, user: b)
 Reel.create(item_name: "Saltiga", size: "5000", description: "Great", price: "1200", item_condition: "good", brand_id: 2, reel_type_id: 1, user_id: 2)
 
 Reel.create(item_name: "Stella", size: "10000", description: "Great", price: "1100", item_condition: "good", brand_id: 1, reel_type_id: 1, user_id: 2)
