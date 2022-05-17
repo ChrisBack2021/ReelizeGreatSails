@@ -5,7 +5,7 @@
 <%# Displays brief information about each reel %>
 <% @reels.each do |reel| %>
   <div class="card" style="width: 18rem;">
-    <%= cl_image_tag(reel.reel_pic.key, height: 225, width: 150, crop: :scale, cloud_name: 'dm2ebszpf', class: "card-img-top") %>
+    <%= cl_image_tag(reel.reel_pic.key, height: 225, width: 150, crop: :scale, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "card-img-top") %>
     <div class="card-body">
       <ul>Item:<%= "#{reel.brand.brand} #{reel.item_name}" %></ul>
       <ul>Price: <%= number_to_currency reel.price %></ul>

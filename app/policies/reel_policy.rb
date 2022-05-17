@@ -18,7 +18,7 @@ class ReelPolicy
   end
 
   def create?
-   return @user && @user.has_any_role?(:admin, :customer)
+   return @user
   end
 
   def new?
