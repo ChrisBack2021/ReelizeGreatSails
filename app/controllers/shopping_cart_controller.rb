@@ -15,23 +15,29 @@ class ShoppingCartController < ApplicationController
   end
 
   def index
-session = Stripe::Checkout::Session.create(
+      items = []
+      session[:cart].each do |id|
+        list_item = Reel.find(id)
+        items.push({ name: list_item.item_name, description: list_item.description, amount: (list_item.price)*100, currency: 'aud', quantity: 1 })
+      end
+
+        #name: "#{@reel.brand.brand} #{@reel.item_name}",
+        #description: @reel.description,
+        #amount: (@reel.price)*100,
+        #currency: 'aud',
+        #quantity: 1
+
+      session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
         customer_email: current_user.email,
-        line_items: [{
-          name: 'ReelizeGreatSails',
-          description: "ReelizeGreatSails",
-          amount: (@cart),
-          currency: 'aud',
-          quantity: 1,
-        }],
+        line_items: items,
         payment_intent_data: {
           metadata: {
-            order_id: @cart.id,
+            # order_id: @cart.id,
             user_id: current_user.id
           }
         },
-        success_url: "#{root_url}payments/success?orderId=#{@cart.id}",
+        success_url: "#{root_url}payments/success",
         cancel_url: "#{root_url}order_menu_items"
       )
       @session_id = session.id

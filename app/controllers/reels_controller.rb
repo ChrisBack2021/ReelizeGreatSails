@@ -12,7 +12,9 @@ class ReelsController < ApplicationController
 
   # Creating new reel, has to pass validation.
   def create
-    @reel = Reel.create!(reel_params)
+    @reel = Reel.new(reel_params)
+    @reel.user_id = current_user.id
+    @reel.save
     if @reel.valid?
       redirect_to @reel
     else
