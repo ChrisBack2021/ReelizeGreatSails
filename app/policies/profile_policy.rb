@@ -14,7 +14,7 @@ class ProfilePolicy
   end
 
   def show?
-    true
+    return @user
   end
 
   def create?

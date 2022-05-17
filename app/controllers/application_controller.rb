@@ -15,7 +15,7 @@ private
   end
 
   def unauthorised_profile
-    unless current_user.id == @profile.id || current_user.id == 1
+    unless current_user.id == @profile.user_id || current_user.id == 1
       redirect_to root_path, alert: "You are not authorized to perform that action"
     end
   end
