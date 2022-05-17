@@ -14,7 +14,7 @@ class ProfilePolicy
   end
 
   def show?
-    return @user
+    return @user && @user.has_any_role?(:admin, :customer)
   end
 
   def create?
@@ -34,7 +34,7 @@ class ProfilePolicy
   end
 
   def destroy?
-    return @user && @user.has_any_role?(:admin)
+    return @user && @user.has_any_role?(:admin, :customer)
   end
 
   # def add_to_cart?

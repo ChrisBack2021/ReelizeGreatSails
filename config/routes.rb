@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/profiles/:id/edit', to: 'profiles#edit', as: 'edit_profile'
   post '/profiles/:id/edit', to: 'profiles#update'
   get 'profiles/:id', to: 'profiles#show', as: 'profile'
+  delete '/profiles/:id', to: 'profiles#destroy'
 
 
 

@@ -10,6 +10,7 @@
 
 <%# Link to edit profile information %>
 <%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning me-2' %>
+<%= button_to('Delete', @profile, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete the account belonging to #{@profile.first_name} ?" } }, class: 'btn btn-danger me-2') %>
 
 
 <h2>Listed items</h2>
@@ -19,16 +20,11 @@
 </li>
 <% end %>
 
-
-
 <h3>Purchase history</h3>
-<% if current_user.purchases.nil? %>
-  <%= 'You have not purchased anything' %>
-<% else %>
   <% current_user.purchases.each do |history| %>
   <li>
-    <%= history.reel.item_name%> - $<%= history.reel.price%>
+    <ul>Reel: <%= history.reel.brand.brand %> <%= history.reel.item_name%></ul>
+    <ul>Price: $<%= history.reel.price %></ul>
   </li>
-<% end %>
 <% end %>
 

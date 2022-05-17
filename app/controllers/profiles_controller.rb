@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_profile
-  before_action :set_profile, only: [:show, :update, :edit]
+  before_action :set_profile, except: [:index]
 
   
   # Shows current profile info
@@ -21,6 +21,20 @@ class ProfilesController < ApplicationController
   def show
     unauthorised_profile
   end
+
+  def destroy
+    if @profile.user_id == current_user.id || current_user.id == 1
+      @profile.destroy!
+      if !current_user.has_role? :admin
+        session.clear
+        redirect_to root_path 
+      end
+    else
+      unauthorised_profile
+    end
+  end
+
+
 
   private
 
