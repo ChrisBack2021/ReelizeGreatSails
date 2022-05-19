@@ -37,13 +37,7 @@ class ProfilePolicy
     return @user && @user.has_any_role?(:admin, :customer)
   end
 
-  # def add_to_cart?
-  #   return @user && @user.has_any_role?(:admin, :customer)
-  # end
 
-  # def remove_from_cart?
-  #   add_to_cart?
-  # end
 
 
   class Scope

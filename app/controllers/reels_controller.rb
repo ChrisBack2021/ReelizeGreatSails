@@ -4,6 +4,8 @@ class ReelsController < ApplicationController
   before_action :check_user
   before_action :set_reel, only: [:show, :edit, :update, :destroy]
   before_action :set_brand_reel_type, only: [:new, :edit, :create, :update]
+  before_action :initialize_wish_list
+  before_action :wish_list
 
   def new
     @reel = Reel.new
@@ -73,11 +75,25 @@ class ReelsController < ApplicationController
   def destroy
     if @reel.user_id == current_user.id || current_user.id == 1
       @reel.reel_pic.purge
+      id = params[:id]
+      session[:wish_list].delete(id)
       @reel.destroy
-      redirect_to reels_path
+      redirect_to root_path
     else
       unauthorised_reel
     end
+  end
+
+ def add_to_wish_list
+    id = params[:id]
+    session[:wish_list] << id unless session[:wish_list].include?(id)
+    redirect_to root_path
+  end
+
+  def remove_from_wish_list
+    id = params[:id]
+    session[:wish_list].delete(id)
+    redirect_to root_path
   end
 
 

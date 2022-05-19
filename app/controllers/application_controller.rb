@@ -24,8 +24,15 @@ private
     end
   end
 
-# For session based shopping cart
+# For wish list
+  def initialize_wish_list
+    session[:wish_list] ||= []
+  end
 
+
+  def wish_list
+    @wish_list = Reel.find(session[:wish_list])
+  end
 
 
 
