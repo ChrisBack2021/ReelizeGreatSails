@@ -4,15 +4,15 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <%= f.fields_for :profile do |profile_form| %>
-    <div>
+    <div class= "col-sm-2">
     <%= profile_form.label :first_name%>
       <%= profile_form.text_field :first_name %>
     </div>
-    <div>
+    <div class= "col-sm-2">
       <%= profile_form.label :last_name %>
       <%= profile_form.text_field :last_name%>
     </div>
-    <div>
+    <div class= "col-sm-2">
       <%= profile_form.label :age %>
       <%= profile_form.text_field :age %>
     </div>
