@@ -1,10 +1,5 @@
 <h2>Wish List</h2>
-<% unless user_signed_in? && current_user.profile.wish_lists.each do |wish_list_item|%>
-<li>
-<%= wish_list_item.reel.brand.brand %> <%= wish_list_item.reel.item_name %>
-</li>
-<% end %>
-<% end %>
+
 <% user_signed_in? ? (current_user.add_role :customer) : '' %>
 <%# if user signed in and authorised to new, displays new button. %>
 
@@ -25,11 +20,7 @@
       <ul>Price: <%= number_to_currency reel.price %></ul>
       <ul>Description: <%= reel.description %></ul>
       <ul>Item condition: <%= reel.item_condition %></ul>
-      <div class="btn-toolbar ">
-          <p><%= button_to 'Add to Wish List', wish_lists_path(reel.id), method: :post, class: 'btn btn-success me-1' %></p>
-          <p><%= button_to 'Remove Wish List', remove_wish_lists_path(reel.id), method: :delete, class: 'btn btn-warning mt-1' %></p>
-          <p><%= link_to 'More info', reel, class: 'btn btn-info ms-1 mt-1' %></p>
-      </div>
+      <p><%= link_to 'More info', reel, class: 'btn btn-info ms-1 mt-1' %></p>
     </div>
   </div>
 <% end %>

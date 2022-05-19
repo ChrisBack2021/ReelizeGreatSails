@@ -14,9 +14,7 @@ Rails.application.routes.draw do
   get 'profiles/:id', to: 'profiles#show', as: 'profile'
   delete '/profiles/:id', to: 'profiles#destroy'
 
-  get '/wish_list', to: 'wish_lists#index'
-  post '/wish_lists/:id', to: 'wish_lists#create', as: 'wish_lists'
-  delete '/remove_wish_lists/:id', to: 'wish_lists#destroy', as: 'remove_wish_lists'
+
 
 
   get '/payments/success/:reel_id', to: 'payments#success'

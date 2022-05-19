@@ -3,7 +3,7 @@ class Reel < ApplicationRecord
   belongs_to :brand
   belongs_to :user
   has_many :purchases, dependent: :destroy
-  has_many :wish_lists, dependent: :destroy
+ 
   
   has_one_attached :reel_pic
 
