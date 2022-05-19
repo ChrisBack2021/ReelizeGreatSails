@@ -8,18 +8,15 @@ Rails.application.routes.draw do
 
   resources :reels
 
-
   get '/profiles', to: 'profiles#index'
   get '/profiles/:id/edit', to: 'profiles#edit', as: 'edit_profile'
   post '/profiles/:id/edit', to: 'profiles#update'
   get 'profiles/:id', to: 'profiles#show', as: 'profile'
   delete '/profiles/:id', to: 'profiles#destroy'
 
-
-
-  get '/order', to: 'order#index'
-  post 'order/add_to_cart/:id', to: 'order#add_to_cart', as: 'add_to_cart'
-  delete 'order/remove_from_cart/:id', to: 'order#remove_from_cart', as: 'remove_from_cart'
+  get '/wish_list', to: 'wish_lists#index'
+  post '/wish_lists/:id', to: 'wish_lists#create', as: 'wish_lists'
+  delete '/remove_wish_lists/:id', to: 'wish_lists#destroy', as: 'remove_wish_lists'
 
 
   get '/payments/success/:reel_id', to: 'payments#success'

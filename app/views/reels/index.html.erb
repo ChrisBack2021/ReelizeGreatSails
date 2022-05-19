@@ -1,10 +1,22 @@
-<h1>Catalogue</h1>
+<h2>Wish List</h2>
+<% unless user_signed_in? && current_user.profile.wish_lists.each do |wish_list_item|%>
+<li>
+<%= wish_list_item.reel.brand.brand %> <%= wish_list_item.reel.item_name %>
+</li>
+<% end %>
+<% end %>
 <% user_signed_in? ? (current_user.add_role :customer) : '' %>
 <%# if user signed in and authorised to new, displays new button. %>
-<h2><%= user_signed_in? && policy(Reel).new? ? (link_to 'Sell', new_reel_path, class: 'btn btn-primary') : '' %></h2>
+
+<h1 class="d-flex justify-content-between">
+  Catalogue 
+  <%= user_signed_in? && policy(Reel).new? ? (link_to 'Sell', new_reel_path, class: 'btn btn-primary me-3') : '' %>
+</h1>
+
+<div class="d-flex flex-wrap justify-content-evenly ">
 <%# Displays brief information about each reel %>
 <% @reels.each do |reel| %>
-  <div class="card" style="width: 18rem;">
+  <div class="card mt-3" style="width: 18rem;">
     <%= cl_image_tag(reel.reel_pic.key, height: 225, width: 150, crop: :scale, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "card-img-top") %>
     <div class="card-body">
       <ul>Item:<%= "#{reel.brand.brand} #{reel.item_name}" %></ul>
@@ -12,13 +24,12 @@
       <ul>Description: <%= reel.description %></ul>
       <ul>Item condition: <%= reel.item_condition %></ul>
       <div class="btn-toolbar ">
-        <% if @cart.include?(reel) %>
-          <p><%= button_to 'Remove from cart', remove_from_cart_path(reel), method: :delete, class: 'btn btn-warning ps-1  me-1' %></p>
-        <% else %>
-          <p><%= button_to 'Add to cart', add_to_cart_path(reel.id), method: :post, class: 'btn btn-success me-1' %></p>
-        <% end %>
-        <%= link_to 'More info', reel, class: 'btn btn-info me-1' %>
+          <p><%= button_to 'Add to Wish List', wish_lists_path(reel.id), method: :post, class: 'btn btn-success me-1' %></p>
+          <p><%= button_to 'Remove Wish List', remove_wish_lists_path(reel.id), method: :delete, class: 'btn btn-warning mt-1' %></p>
+          <p><%= link_to 'More info', reel, class: 'btn btn-info ms-1 mt-1' %></p>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
+

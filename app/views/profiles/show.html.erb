@@ -9,16 +9,30 @@
 </ul>
 
 <%# Link to edit profile information %>
-<%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning me-2' %>
-<%= button_to('Delete', @profile, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete the account belonging to #{@profile.first_name} ?" } }, class: 'btn btn-danger me-2') %>
+<%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning' %>
 
 
 <h2>Listed items</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Price ($)</th>
+      <th>View Item</th>
+    </tr>
+  </thead>
 <% current_user.reels.each do |item| %>
-<li class="mt-2">
-  <%= item.item_name %> - $<%= item.price %> <%= link_to 'View item', reel_path(item), class: 'btn btn-primary btn-sm' %>
-</li>
-<% end %>
+  </tbody>
+    <tr>
+      <td><%= item.brand.brand %> <%= item.item_name %></td>
+      <td>$<%= item.price %></td>
+      <td><%= link_to 'View item', reel_path(item), class: 'btn btn-primary btn-sm' %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
 
 <h3>Purchase history</h3>
   <% current_user.purchases.each do |history| %>
@@ -27,4 +41,6 @@
     <ul>Price: $<%= history.reel.price %></ul>
   </li>
 <% end %>
+
+
 
