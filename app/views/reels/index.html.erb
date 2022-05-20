@@ -1,17 +1,19 @@
 
 <% user_signed_in? ? (current_user.add_role :customer) : '' %>
 <%# if user signed in and authorised to new, displays new button. %>
-<h2>Wish List</h2>
-  <% if @wish_list.empty? %>
-    <p>No items to display.</p>
-  <% else %>
-    <ul>
-      <% @wish_list.each do |reel| %> 
-        <li> <%= reel.item_name %> <%= button_to "Remove item", remove_from_wish_list_path(reel), method: :delete, class: 'btn btn-warning ms-1 mt-1' %> </li>
-      <% end %>
-    </ul>
-  <% end %>
 
+<details>
+  <summary>Wish List</summary>
+    <% if @wish_list.empty? %>
+      <p>No items to display.</p>
+    <% else %>
+      <ul>
+        <% @wish_list.each do |reel| %> 
+          <li> <%= reel.item_name %> <%= button_to "Remove item", remove_from_wish_list_path(reel), method: :delete, class: 'btn btn-warning ms-1 mt-1' %> </li>
+        <% end %>
+      </ul>
+    <% end %>
+</details>
 
 <h1 class="d-flex justify-content-between">
   Catalogue 
