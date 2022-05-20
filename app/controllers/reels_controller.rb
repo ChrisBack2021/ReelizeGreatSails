@@ -114,8 +114,8 @@ private
 
   # Brand/reel type is ordered for when updating/creating new listing.
   def set_brand_reel_type
-    @brands = Brand.order(:brand)
-    @reel_types = ReelType.order(:reel_type)
+    @brands = Brand.includes(:reels).order(:brand)
+    @reel_types = ReelType.includes(:reels).order(:reel_type)
   end
 
   # Strong params to stop sql injections
