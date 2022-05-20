@@ -24,12 +24,13 @@ private
     end
   end
 
-# For wish list
+  # session[:wish_list] returns as [] if no values are found. Meaning an array in this case.
   def initialize_wish_list
     session[:wish_list] ||= []
   end
 
 
+  # In Postgresql syntax, the query is SELECT.
   def wish_list
     @wish_list = Reel.find(session[:wish_list])
   end

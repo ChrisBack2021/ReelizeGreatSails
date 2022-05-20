@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   before_action :set_profile, except: [:index]
 
   
-  # Shows current profile info
+  # Displays all records in the profile database. In postgresql, the syntax is SELECT * from, the asterisk means select all.
   def index
     @profiles = Profile.all
   end
@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
     unauthorised_profile
   end
 
+    # Postgresql syntaxt for updating a record in the database is UPDATE.
   def update
     @profile.update(profile_params)
     redirect_to profile_path
@@ -41,6 +42,7 @@ class ProfilesController < ApplicationController
     authorize Profile
   end
 
+  # Searches database for the profile. How it searches the database is through the id given by the params. It matches it up with the profile_id in the database. In Postgresql syntax, the query is SELECT.
   def set_profile
     @profile = Profile.find(params[:id])
   end

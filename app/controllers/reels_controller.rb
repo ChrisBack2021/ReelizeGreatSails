@@ -10,12 +10,13 @@ class ReelsController < ApplicationController
     session[:wish_list].delete(id)   
   end
 
+  # The #new method creates a new record in the database. In this case, a new record in Reel database. The #new is the same as the INSERT query in postgresql.
   def new
     @reel = Reel.new
     set_brand_reel_type
   end
 
-  # Creating new reel, has to pass validation.
+  #Creates a new reel with the values that were given in the form. The form includes the reel_params and sanitizes it. The #new is the same as the INSERT query in postgresql.
   def create
     @reel = Reel.new(reel_params)
     @reel.user_id = current_user.id
@@ -28,7 +29,8 @@ class ReelsController < ApplicationController
     end
   end
 
-  # Shows all reels
+  
+  # Displays all the records in the Reels database. In postgresql, the syntax is SELECT * from, the asterisk means select all.
   def index
     @reels = Reel.all
   end
@@ -59,12 +61,12 @@ class ReelsController < ApplicationController
     wish_list_delete
   end
 
-  # Further authorisation
+  
   def edit
     unauthorised_reel
   end
 
-    # Updates one particular reel
+  # Postgresql syntaxt for updating a record in the database is UPDATE.
   def update
     begin
       @reel.update(reel_params)
@@ -105,7 +107,7 @@ private
     authorize Reel
   end
 
-  # Uses params id to find a reel
+  # Searches database for the reel. How it searches the database is through the id given by the params. It matches it up with the reel_id in the database. In Postgresql syntax, the query is SELECT.
   def set_reel
     @reel = Reel.find(params[:id])
   end
