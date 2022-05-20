@@ -21,14 +21,14 @@
       <th>View Item</th>
     </tr>
   </thead>
-<% current_user.reels.each do |item| %>
-  </tbody>
-    <tr>
-      <td><%= item.brand.brand %> <%= item.item_name %></td>
-      <td>$<%= item.price %></td>
-      <td><%= link_to 'View item', reel_path(item), class: 'btn btn-primary btn-sm' %></td>
-    </tr>
-  </tbody>
+  <% current_user.reels.each do |item| %>
+    </tbody>
+      <tr>
+        <td><%= item.brand.brand %> <%= item.item_name %></td>
+        <td>$<%= item.price %></td>
+        <td><%= link_to 'View item', reel_path(item), class: 'btn btn-primary btn-sm' %></td>
+      </tr>
+    </tbody>
   <% end %>
 </table>
 
@@ -41,7 +41,7 @@
     <ul>Reel: <%= history.reel.brand.brand %> <%= history.reel.item_name%></ul>
     <ul>Price: $<%= history.reel.price %></ul>
   </li>
-<% end %>
+  <% end %>
 
 
 

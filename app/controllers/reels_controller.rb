@@ -1,11 +1,14 @@
 class ReelsController < ApplicationController
-
   before_action :authenticate_user!, except: [:index]
-  before_action :check_user
+  before_action :check_user, :initialize_wish_list, :wish_list
   before_action :set_reel, only: [:show, :edit, :update, :destroy]
   before_action :set_brand_reel_type, only: [:new, :edit, :create, :update]
-  before_action :initialize_wish_list
-  before_action :wish_list
+
+
+  def wish_list_delete
+    id = params[:id]
+    session[:wish_list].delete(id)   
+  end
 
   def new
     @reel = Reel.new
@@ -53,6 +56,7 @@ class ReelsController < ApplicationController
       cancel_url: "#{root_url}reels"
     )
     @session_id = @session.id
+    wish_list_delete
   end
 
   # Further authorisation
@@ -71,12 +75,12 @@ class ReelsController < ApplicationController
     end
   end
 
+
   # Destroys one particular reel and removes pic.
   def destroy
     if @reel.user_id == current_user.id || current_user.id == 1
       @reel.reel_pic.purge
-      id = params[:id]
-      session[:wish_list].delete(id)
+      wish_list_delete
       @reel.destroy
       redirect_to root_path
     else
@@ -91,8 +95,7 @@ class ReelsController < ApplicationController
   end
 
   def remove_from_wish_list
-    id = params[:id]
-    session[:wish_list].delete(id)
+    wish_list_delete
     redirect_to root_path
   end
 
