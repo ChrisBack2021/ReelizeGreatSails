@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
     @profiles = Profile.all
   end
 
+  # Postgresql syntaxt for updating a record in the database is UPDATE.
   def edit
     unauthorised_profile
   end
@@ -22,6 +23,7 @@ class ProfilesController < ApplicationController
     unauthorised_profile
   end
 
+  # The postgresql query is DELETE.
   def destroy
     if @profile.user_id == current_user.id || current_user.id == 1
       @profile.destroy!

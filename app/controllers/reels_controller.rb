@@ -78,7 +78,7 @@ class ReelsController < ApplicationController
   end
 
 
-  # Destroys one particular reel and removes pic.
+  # Destroys one particular reel and removes pic. The postgresql query is DELETE.
   def destroy
     if @reel.user_id == current_user.id || current_user.id == 1
       @reel.reel_pic.purge
