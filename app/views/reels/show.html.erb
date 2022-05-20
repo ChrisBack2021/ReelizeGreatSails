@@ -2,9 +2,7 @@
   <%= @reel.brand.brand %>
   <%= @reel.item_name %>
 </h1>
-
 <%= cl_image_tag @reel.reel_pic.key, crop: :scale, width: 250, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'] %>
-
 <h2> 
   <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
   <ul>Size: <%= @reel.size %></ul>
@@ -13,15 +11,11 @@
   <ul>Item condition: <%= @reel.item_condition %></ul>
   <ul>Reel type: <%= @reel.reel_type.reel_type %></ul>
 </h2>
-
-
-
 <%# Button bar for action buttons. %>
 <div class="btn-toolbar ">
   <% if user_signed_in? %>
-<%# Edit link, only if reel policy update action allows %>
-    <%= link_to 'Edit', edit_reel_path(@reel), class: 'btn btn-warning me-2' %>
-    <%= button_to('Delete', @reel, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete ' #{@reel.brand.brand} #{@reel.item_name}' ?" } }, class: 'btn btn-danger me-2') %>
+    <%= link_to 'Edit', edit_reel_path(@reel), class: 'btn btn-warning me-2' if current_user.id == @reel.user_id || current_user.id == 1 %>
+    <%= button_to('Delete', @reel, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete ' #{@reel.brand.brand} #{@reel.item_name}' ?" } }, class: 'btn btn-danger me-2') if current_user.id == @reel.user_id || current_user.id == 1 %>
   <% end %>
   <%= link_to 'Back to catalogue', reels_path, class: 'btn btn-primary' %>
 <%# Below is for Stripe %>
