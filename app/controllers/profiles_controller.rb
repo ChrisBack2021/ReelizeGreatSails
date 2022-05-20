@@ -3,17 +3,17 @@ class ProfilesController < ApplicationController
   before_action :set_profile, except: [:index]
 
   
-  # Displays all records in the profile database. In postgresql, the syntax is SELECT * from, the asterisk means select all.
+  # Displays all records in the profile database. In postgresql, the syntax is SELECT * from, the asterisk means select all. Full query is SELECT * FROM entity/model.
   def index
     @profiles = Profile.all
   end
 
-  # Postgresql syntaxt for updating a record in the database is UPDATE.
+  # Postgresql syntaxt for updating a record in the database is UPDATE. the WHERE will be which record will be updated. In this case, the profile record for that particular profile.
   def edit
     unauthorised_profile
   end
 
-    # Postgresql syntaxt for updating a record in the database is UPDATE.
+    # Postgresql syntaxt for updating a record in the database is UPDATE. the WHERE will be which record will be updated. In this case, the profile record for that particular profile.
   def update
     @profile.update(profile_params)
     redirect_to profile_path
@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
     unauthorised_profile
   end
 
-  # The postgresql query is DELETE.
+  # The postgresql syntax is DELTEE. The full query is DELETE FROM profiles WHERE the record is at. The record being the profile id.
   def destroy
     if @profile.user_id == current_user.id || current_user.id == 1
       @profile.destroy!

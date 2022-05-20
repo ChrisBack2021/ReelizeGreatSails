@@ -10,13 +10,13 @@ class ReelsController < ApplicationController
     session[:wish_list].delete(id)   
   end
 
-  # The #new method creates a new record in the database. In this case, a new record in Reel database. The #new is the same as the INSERT query in postgresql.
+  # The #new method creates a new record in the database. In this case, a new record in Reel database. The #new is the same as the INSERT  INTO query in postgresql.
   def new
     @reel = Reel.new
     set_brand_reel_type
   end
 
-  #Creates a new reel with the values that were given in the form. The form includes the reel_params and sanitizes it. The #new is the same as the INSERT query in postgresql.
+  #Creates a new reel with the values that were given in the form. The form includes the reel_params and sanitizes it. The SQL query is INSERT INTO table_name
   def create
     @reel = Reel.new(reel_params)
     @reel.user_id = current_user.id
@@ -30,7 +30,7 @@ class ReelsController < ApplicationController
   end
 
   
-  # Displays all the records in the Reels database. In postgresql, the syntax is SELECT * from, the asterisk means select all.
+  # Displays all the records in the Reels database. In postgresql, the syntax is SELECT * from, the asterisk means select all. Full query is SELECT * FROM table_name
   def index
     @reels = Reel.all
   end
@@ -66,7 +66,7 @@ class ReelsController < ApplicationController
     unauthorised_reel
   end
 
-  # Postgresql syntaxt for updating a record in the database is UPDATE.
+  # Postgresql syntaxt for updating a record in the database is UPDATE. the WHERE will be which record will be updated. In this case, the reel record for that particular reel found by reel_id
   def update
     begin
       @reel.update(reel_params)
@@ -78,7 +78,7 @@ class ReelsController < ApplicationController
   end
 
 
-  # Destroys one particular reel and removes pic. The postgresql query is DELETE.
+  # Destroys one particular reel and removes pic. The postgresql query is DELETE FROM reels WHERE this_is_where_a_condition_lies. the condition in this case being that particular reel found by reel_id
   def destroy
     if @reel.user_id == current_user.id || current_user.id == 1
       @reel.reel_pic.purge
