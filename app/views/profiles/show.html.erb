@@ -34,14 +34,23 @@
 
 
 
-
 <h3>Purchase history</h3>
+<table class= "table-sm">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+    </tr>
+  </thead>
   <% current_user.purchases.each do |history| %>
-  <li>
-    <ul>Reel: <%= history.reel.brand.brand %> <%= history.reel.item_name%></ul>
-    <ul>Price: $<%= history.reel.price %></ul>
-  </li>
+    </tbody>
+      <tr>
+        <td><%= history.reel.brand.brand %> <%= history.reel.item_name%>
+        <td>$<%= history.reel.price %></td>
+      </tr>
+    </tbody>
   <% end %>
+</table>
 
 
 
